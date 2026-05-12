@@ -65,7 +65,7 @@ A custom 3-layer sequential CNN was developed to establish a performance floor (
 ### 📈 5.2 The Advanced: EfficientNet-B0 Pipeline
 The primary architecture utilizes an **EfficientNet-B0** backbone with **Transfer Learning**. It features a custom diagnostic head with **BatchNorm1d** for stability and **Dual Dropout** to prevent overfitting, treating depth, width, and resolution as a joint optimization problem.
 
-![Figure 3: Advanced Curves](./Visuals/full_training_performance.jpg)  
+![Figure 3: Advanced Curves](./Visuals/full_training_performance.png)  
 > **Figure 3:** Advanced model convergence showing stable diagnostic accuracy and loss reduction history.
 
 ---
@@ -75,7 +75,7 @@ The primary architecture utilizes an **EfficientNet-B0** backbone with **Transfe
 ### 🏆 6.1 Final Results & Clinical Gain
 The final audit on unseen test data revealed a massive gain in diagnostic safety. The Advanced model reduced the risk of missed diagnoses by **84%**, identifying 21 additional patients that the baseline model failed to recognize.
 
-![Figure 4: Final Comparison](./Visuals/final_clinical_comparison_table.png)  
+![Figure 4: Final Comparison](./Visuals/Comparison between baseline & advance model.png)  
 > **Figure 4:** Side-by-side performance benchmarking highlighting the gains in Sensitivity and MCC across architectures.
 
 ### ✅ 6.2 High-Sensitivity Scorecard
