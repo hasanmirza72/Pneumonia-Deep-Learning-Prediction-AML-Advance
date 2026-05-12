@@ -75,7 +75,7 @@ The primary architecture utilizes an **EfficientNet-B0** backbone with **Transfe
 ### 🏆 6.1 Final Results & Clinical Gain
 The final audit on unseen test data revealed a massive gain in diagnostic safety. The Advanced model reduced the risk of missed diagnoses by **84%**, identifying 21 additional patients that the baseline model failed to recognize.
 
-![Figure 4: Final Comparison](./Visuals/Comparison between baseline & advance model.png)  
+![Figure 4: Final Comparison](./Visuals/comparison_between_baseline_&_advance_model.png)  
 > **Figure 4:** Side-by-side performance benchmarking highlighting the gains in Sensitivity and MCC across architectures.
 
 ### ✅ 6.2 High-Sensitivity Scorecard
