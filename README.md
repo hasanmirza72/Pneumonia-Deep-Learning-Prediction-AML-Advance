@@ -91,13 +91,13 @@ The optimized pipeline achieved a **99.0% Recall**. This high-sensitivity thresh
 ### 🗺️ 7.1 Biological Interpretability (Grad-CAM)
 To ensure the model focuses on biological symptoms rather than image noise, we implemented **Grad-CAM** localization. Heatmaps confirm that model attention is correctly localized within the **pulmonary parenchyma**.
 
-![Figure 6: Grad-CAM Analysis](./Visuals/gradcam_clinical_analysis.jpg)  
+![Figure 6: Grad-CAM Analysis](./Visuals/gradcam_clinical_analysis.png)  
 > **Figure 6:** Heatmap visualization confirming model focus on biologically relevant lung regions.
 
 ### 🖼️ 7.2 Error Analysis & Gallery
 A systematic visual audit was used to identify "borderline" clinical ambiguities. A general gallery audit further verified that high-confidence predictions align perfectly with actual clinical labels.
 
-![Figure 7: Error Analysis](./Visuals/misclassification_report.jpg)  
+![Figure 7: Error Analysis](./Visuals/misclassification_report.png)  
 > **Figure 7:** Visual audit of misclassified cases identifying borderline clinical ambiguities.
 
 ---
