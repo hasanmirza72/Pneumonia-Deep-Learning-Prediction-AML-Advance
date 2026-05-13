@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def train_radiology_model(model, criterion, optimizer, loaders, num_epochs=15):
     # This function handles the heavy lifting of moving data through the network.
-    # It now uses 'tqdm' to show you a live progress bar for every batch.
+    # It uses 'tqdm' to show you a live progress bar for every batch.
     history = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
     # We create a history dictionary to store every percentage for your report.
     # This data is what allows us to draw the 'Learning Curve' PNG later.
@@ -48,7 +48,7 @@ def train_radiology_model(model, criterion, optimizer, loaders, num_epochs=15):
             history[f'{phase}_loss'].append(epoch_loss)
             history[f'{phase}_acc'].append(epoch_acc.item())
     # We save the final stats for the epoch into our history tracking system.
-    # This ensures no data is lost during the long overnight processing run.
+    # This ensures no data is lost during the long processing run.
 
     return model, history
 # Once all epochs are done, the engine returns the trained model and data.
