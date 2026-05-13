@@ -103,4 +103,27 @@ A systematic visual audit was used to identify "borderline" clinical ambiguities
 ---
 
 ## 🏁 8. Conclusion
-This project successfully transitions from a naive AI approach to a robust, clinically-aware diagnostic pipeline. The combination of **Radiology CLAHE**, **Weighted Samplers**, and **EfficientNet-B0** establishes a framework that is significantly safer for hospital use than standard CNNs. By prioritizing **Recall (99.0%)** and **MCC (0.646)**, this study provides a reliable decision-support tool for modern cardiovascular and respiratory bioinformatics.
+This project successfully transitions from a naive AI approach to a robust, clinically-aware diagnostic pipeline. The combination of **Radiology CLAHE**, **Weighted Samplers**, and **EfficientNet-B0** establishes a framework that is significantly safer for hospital use than standard CNNs. By prioritizing **Recall (99.0%)** and **MCC (0.646)**, this study provides a reliable decision-support tool for modern respiratory bioinformatics.
+
+---
+
+## 📂 9. Project Structure & Data Access
+
+While this repository is specifically optimized to host heavy **Model Weights** via Git LFS, the full research pipeline follows the structure below. 
+
+### 📊 External Dataset
+To run these models or replicate the study, please download the primary dataset:
+* **Dataset:** [ChestXRay2017 (UCSD)](https://data.mendeley.com/datasets/rscbjbr9sj/2)
+* **Instructions:** Download and extract the ZIP into a local `/Data` folder.
+
+### 🏗️ Repository Layout
+```plaintext
+Pneumonia-Prediction-AML-Advance/
+├── .gitattributes        # LFS tracking configuration
+├── .gitignore            # Whitelist configuration (Models-only)
+├── Models/               # Trained .pth Weights (Stored via Git LFS)
+│   ├── baseline_model.pth
+│   └── pneumonia_classifier_v1.pth
+├── Scripts/              # (Local) Python Pipeline (Data Prep, Training, Grad-CAM)
+├── Visuals/              # (Local) Clinical Plots, ROC Curves, and Confusion Matrices
+└── Report/               # (Local) Final Research PDF
