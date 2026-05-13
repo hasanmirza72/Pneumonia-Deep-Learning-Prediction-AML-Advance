@@ -13,7 +13,7 @@ from PIL import Image
 class RadiologyCLAHE:
     def __call__(self, img):
         # Convert PIL image to NumPy array to allow OpenCV to perform mathematical pixel operations.
-        # This is the first step in our 'Clinical Pipeline' to standardize image quality.
+        # This is the first step to standardize image quality.
         img_np = np.array(img)
 
         # Convert to LAB color space to isolate the Luminance (L) channel for enhancement.
@@ -22,7 +22,6 @@ class RadiologyCLAHE:
         l, a, b = cv2.split(lab)
 
         # Apply Adaptive Histogram Equalization with a clip limit of 2.0 to avoid over-exposure.
-        # This solves the professor's 'Methodological Depth' requirement by adding domain-specific preprocessing.
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         cl = clahe.apply(l)
 
@@ -57,7 +56,7 @@ xray_transforms = {
 
 # --- SECTION 3: THE X-RAY LOADER ENGINE ---
 # This function creates the training and validation loaders specifically for binary classification.
-# It addresses the 'Class Imbalance' mentioned in your previous project feedback.
+# It addresses the 'Class Imbalance'.
 def get_xray_loaders(base_path, batch_size=32):
     loaders = {}
 
@@ -85,8 +84,8 @@ def get_xray_loaders(base_path, batch_size=32):
             sampler = None
             shuffle = False  # Validation must stay in a fixed order for accurate confusion matrix generation.
 
-        # Initialize the DataLoader to manage batches and memory flow on your laptop CPU.
-        # We set pin_memory False to optimize the workflow for a CPU-only environment.
+        # Initialize the DataLoader to manage batches and memory flow on CPU.
+        # Set pin_memory False to optimize the workflow for a CPU-only environment.
         loaders[phase] = DataLoader(dataset, batch_size=batch_size, sampler=sampler,
                                     shuffle=shuffle, num_workers=2, pin_memory=False)
 
