@@ -17,7 +17,7 @@ model_file = os.path.join(script_dir, 'baseline_model.pth')
 test_data_path = os.path.join(script_dir, 'ChestXRay2017', 'chest_xray', 'test')
 
 if __name__ == "__main__":
-    # 1. Load the same UNSEEN data used for the advanced model
+    # 1. Load the same UNSEEN data used for the model
     test_dataset = datasets.ImageFolder(root=test_data_path, transform=xray_transforms['val'])
     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=0)
 
