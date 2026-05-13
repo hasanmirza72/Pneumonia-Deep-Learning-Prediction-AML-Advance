@@ -21,7 +21,6 @@ class RadiologyEfficientNet(nn.Module):
 
         # Step 1: Initialize the EfficientNet-B0 backbone with 'Transfer Learning' weights.
         # We start with weights learned from millions of images to give the model a 'vision baseline'.
-        # This addresses the professor's request for 'more appropriate architectures' and transfer learning.
         if pretrained:
             self.base_model = models.efficientnet_b0(weights=models.EfficientNet_B0_Weights.IMAGENET1K_V1)
         else:
@@ -34,7 +33,7 @@ class RadiologyEfficientNet(nn.Module):
 
         # Step 3: Replace the standard classifier with an 'Advanced Medical Diagnostic Head'.
         # We use a custom 'Sequential' stack to add layers that specifically fight overfitting.
-        # This demonstrates 'Architectural Variation', a key requirement from your professor's feedback.
+        # This demonstrates 'Architectural Variation'.
         self.base_model.classifier = nn.Sequential(
             # Dropout (0.3) randomly deactivates 30% of neurons to prevent the model from memorizing data.
             # This forces the network to learn robust, general features of pneumonia instead of noise.
@@ -71,14 +70,14 @@ class RadiologyEfficientNet(nn.Module):
 # --- SECTION 3: MITIGATING CLASS IMBALANCE ---
 # This function calculates a weighted 'Criterion' to solve the professor's most critical complaint.
 # It uses the inverse frequency of your labels to ensure the model respects the minority class.
-# This prevents the 'majority class collapse' that ruined your previous project's results.
+# This prevents the 'majority class collapse'.
 def get_clinical_criterion(class_counts):
     # We calculate class weights using the inverse frequency formula: $Weight_{i} = \frac{1}{Count_{i}}$.
     # This gives the rarer 'Normal' class a much higher mathematical importance during the learning phase.
     weights = 1.0 / torch.tensor(class_counts, dtype=torch.float)
 
     # We normalize the weights so they sum to 1.0, keeping the gradients within a stable range.
-    # This prevents the learning process from becoming erratic on your laptop's system memory.
+    # This prevents the learning process from becoming erratic on laptop's system memory.
     weights = weights / weights.sum()
 
     # We move the weight tensor to the CPU to match the hardware location of the model parameters.
