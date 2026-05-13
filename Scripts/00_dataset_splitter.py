@@ -51,7 +51,7 @@ def split_medical_dataset(base_path, class_list):
 
 
 # --- SECTION 2: EXECUTION BLOCK ---
-# Now we simply 'call' the function twice with the specific details for project.
+# Now we simply 'call' the function with the specific details for project.
 if __name__ == "__main__":
     # 1. Run for Chest X-Ray
     xray_path = r'D:\AML Project\Advance\rscbjbr9sj-2\ChestXRay2017\chest_xray'
