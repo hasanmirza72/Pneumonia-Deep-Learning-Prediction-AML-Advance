@@ -12,7 +12,7 @@ baseline_transforms = {
     'train': transforms.Compose([
         transforms.Resize((224, 224)),
         # We also removed RandomHorizontalFlip and Rotation to make the model
-        # more prone to 'overfitting' on the training set's specific orientations.
+        # It is more prone to 'overfitting' on the training set's specific orientations.
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]),
@@ -36,8 +36,6 @@ def get_baseline_loaders(base_path, batch_size=32):
 
         if phase == 'train':
             # We use standard shuffle=True instead of a WeightedSampler.
-            # This forces the model to encounter Pneumonia images much more
-            # frequently than Normal ones, creating a 'biased' brain.
             sampler = None
             shuffle = True
         else:
