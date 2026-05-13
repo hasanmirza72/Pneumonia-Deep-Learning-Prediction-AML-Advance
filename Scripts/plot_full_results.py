@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 # --- DATA ENTRY (Extracted from your Phase 3 Results) ---
-# We use the exact 20 numbers you generated during your 273-minute training run.
+# Use the exact 20 numbers you generated during your 273-minute training run.
 epochs = list(range(20))
 
 # 1. Loss Data (Measures the 'error' or 'uncertainty' of the model)
