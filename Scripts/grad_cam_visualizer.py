@@ -50,16 +50,16 @@ test_path = os.path.join(script_dir, 'ChestXRay2017', 'chest_xray', 'test')
 output_plot = os.path.join(script_dir, 'gradcam_clinical_analysis.png')
 
 # --- SECTION 3: MULTI-IMAGE PREPARATION ---
-# We select 4 distinct test cases from your D: drive for the analysis gallery.
+# We select 4 distinct test cases from D: drive for the analysis gallery.
 # This proves the model is consistent across different patients.
 images_to_analyze = [
     # Case 1 & 2: True Pneumonia (The Heatmap should highlight consolidation)
     ('PNEUMONIA', 'person1_virus_6.jpeg'),
-    ('PNEUMONIA', 'person31_virus_70.jpeg'),  # Another Pneumonia case from your folder
+    ('PNEUMONIA', 'person31_virus_70.jpeg'),  # Another Pneumonia case from folder
 
     # Case 3 & 4: Normal Scans (Heatmap should be faint or non-existent)
     ('NORMAL', 'NORMAL2-IM-0035-0001.jpeg'),
-    ('NORMAL', 'NORMAL2-IM-0335-0001.jpeg')  # Another Normal case from your folder
+    ('NORMAL', 'NORMAL2-IM-0335-0001.jpeg')  # Another Normal case from folder
 ]
 
 # Create a master gallery plot (4 rows, 2 columns)
