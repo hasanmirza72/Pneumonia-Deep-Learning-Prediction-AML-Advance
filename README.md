@@ -75,6 +75,7 @@ Pneumonia-Deep-Learning-Prediction-AML-Advance/
 │       ├── data_loader.py            # Applied Radiology CLAHE contrast filter and WeightedRandomSampler
 │       ├── training_engine.py        # Master training sequence utilizing step learning rate decay controls
 │       ├── final_test_audit.py       # Clinical test evaluator compiling Recall and MCC statistics
+│       ├── plot_full_results.py      # Independent plotting utility generating training history curves from logs
 │       ├── clinical_visual_check.py  # Diagnostic scanner locating and separating network misclassifications
 │       └── grad_cam_visualizer.py    # Explainable AI (XAI) feature activation heatmap generator
 │
