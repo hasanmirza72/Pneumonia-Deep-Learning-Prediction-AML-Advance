@@ -1,4 +1,8 @@
 # 🩻 Comparative Analysis of Deep Learning Architectures for Pneumonia Detection in Chest X-Rays
+An advanced deep learning framework comparing a naive 3-layer CNN baseline against an optimized, radiology-aware EfficientNet-B0 architecture using the UCSD pediatric chest X-ray dataset.
+
+---
+
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.8-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
@@ -10,7 +14,84 @@
 
 ---
 
-## 📝 1. Abstract
+## 🚀 1. Getting Started & Reproducibility
+
+This section provides the necessary setup commands, dependency requirements, and directory layout to ensure full reproducibility of the clinical audits by external researchers and reviewers.
+
+### 📋 Setup & Terminal Navigation
+To set up the workspace locally, clone the repository and navigate into the root directory using a terminal:
+```bash
+git clone [https://github.com/hasanmirza72/Pneumonia-Deep-Learning-Prediction-AML-Advance.git](https://github.com/hasanmirza72/Pneumonia-Deep-Learning-Prediction-AML-Advance.git)
+cd Pneumonia-Deep-Learning-Prediction-AML-Advance
+```
+
+### 📦 Dependency Installation
+Deploy the certified external libraries using the unified package manifest to prevent local environmental mismatches or runtime exceptions:
+```bash
+pip install -r requirements.txt
+```
+
+### 🗄️ Large File Tracking (Git LFS)
+Because this repository stores large serialized deep learning network checkpoints (`.pth` files), Git Large File Storage (LFS) must be initialized to retrieve and pull down the complete binary tracking layers successfully:
+```bash
+git lfs install
+git pull origin main
+```
+
+### 📊 External Dataset Access
+To maintain a streamlined workspace, raw radiological images are managed externally and decoupled from standard version control parameters:
+* **Dataset Source:** Download the primary chest radiography matrix from the [ChestXRay2017 (UCSD) Mendeley Data Repository](https://data.mendeley.com/datasets/rscbjbr9sj/2).
+* **Local Staging:** Extract the downloaded archive and place the contents into a folder named `Data/` situated directly within the root repository path.
+
+---
+
+## 🏗️ 2. Project Layout & Structure
+
+The framework is strictly organized into functional modules separating raw execution code, model check-pointing, graphical evaluations, and formal reporting assets:
+
+```plaintext
+Pneumonia-Deep-Learning-Prediction-AML-Advance/
+├── .gitattributes          # Global Git LFS instruction set tracking neural network weights
+├── .gitignore              # Project whitelist explicitly ignoring local dataset directories
+├── requirements.txt        # Unified library constraints ensuring project reproducibility
+├── README.md               # Core user onboarding documentation and metric scorecards
+│
+├── Models/                 # 🏆 Saved Network Checkpoints (Managed via Git LFS)
+│   ├── baseline_model.pth           # Trained weights for the standard 3-layer CNN floor baseline
+│   └── pneumonia_classifier_v1.pth  # Fine-tuned champion weights for the EfficientNet-B0 model
+│
+├── Scripts/                # Modular Execution & Model Evaluation Pipelines
+│   ├── 00_dataset_splitter.py       # Isolated engine executing stratified 80/20 train/validation splits
+│   │
+│   ├── 🧪 BASELINE PIPELINE (Unoptimized Operational Stack)
+│   │   ├── baseline_model.py         # Standard 3-layer sequential CNN structural definition
+│   │   ├── data_loader_baseline.py   # Raw image processor completely omitting CLAHE and sampling filters
+│   │   ├── training_engine_baseline.py # Backpropagation mathematical processing and epoch history loop
+│   │   ├── run_baseline_audit.py     # High-level training coordinator script for the baseline network
+│   │   └── baseline_final_audit.py   # Evaluator script compiling the baseline confusion matrix scorecard
+│   │
+│   └── 🚀 ADVANCED PIPELINE (Radiology-Optimized Production Stack)
+│       ├── model_builder.py          # EfficientNet-B0 backbone customized with an advanced medical diagnostic head
+│       ├── data_loader.py            # Applied Radiology CLAHE contrast filter and WeightedRandomSampler
+│       ├── training_engine.py        # Master training sequence utilizing step learning rate decay controls
+│       ├── final_test_audit.py       # Clinical test evaluator compiling Recall and MCC statistics
+│       ├── clinical_visual_check.py  # Diagnostic scanner locating and separating network misclassifications
+│       └── grad_cam_visualizer.py    # Explainable AI (XAI) feature activation heatmap generator
+│
+├── Visuals/                # Production-Grade Performance Charts & Audit Graphics
+│   ├── baseline_learning_curves.png  # Loss reduction tracking and accuracy progression for the baseline
+│   ├── baseline_test_scorecard.png   # Unseen test matrix highlighting high false-negative rates
+│   ├── full_training_performance.png # Symmetrical training vs validation optimization curves
+│   ├── final_test_scorecard.png      # Champion performance analysis reporting a 99.0% sensitivity rate
+│   └── gradcam_clinical_analysis.png # Anatomical localization heatmaps confirming target parenchymal focus
+│
+└── Report/                 # Formal Scholarly Documentation
+    └── Architectural_Evolution_Report.pdf # Comprehensive final research analysis paper
+```
+
+---
+
+## 📝 3. Abstract
 This research establishes an advanced deep learning pipeline for the automated classification of pneumonia from Chest X-ray (CXR) images. This project prioritizes **safety** by maximizing sensitivity to minimize False Negatives. We benchmark a custom **Baseline CNN** against an optimized **EfficientNet-B0** to demonstrate how clinical engineering—specifically contrast enhancement and class balancing—creates a superior diagnostic "ceiling".
 
 ---
@@ -118,12 +199,40 @@ To run these models or replicate the study, please download the primary dataset:
 
 ### 🏗️ Repository Layout
 ```plaintext
-Pneumonia-Prediction-AML-Advance/
-├── .gitattributes        # LFS tracking configuration
-├── .gitignore            # Whitelist configuration (Models-only)
-├── Models/               # Trained .pth Weights (Stored via Git LFS)
-│   ├── baseline_model.pth
-│   └── pneumonia_classifier_v1.pth
-├── Scripts/              # (Local) Python Pipeline (Data Prep, Training, Grad-CAM)
-├── Visuals/              # (Local) Clinical Plots, ROC Curves, and Confusion Matrices
-└── Report/               # (Local) Final Research PDF
+Pneumonia-Deep-Learning-Prediction-AML-Advance/
+├── .gitattributes         # Git LFS tracking rules for large binary weights
+├── .gitignore             # Whitelist configurations (excluding raw dataset files)
+├── requirements.txt       # Unified environment dependencies for reproducibility
+├── README.md              # Core documentation and user onboarding guide
+│
+├── Models/                # 🏆 Core Trained Weights (Managed via Git LFS)
+│   ├── baseline_model.pth           # Standard 3-layer sequential CNN baseline weights
+│   └── pneumonia_classifier_v1.pth  # Optimized Champion EfficientNet-B0 weights
+│
+├── Scripts/               # Modular Production Pipelines (Local Workspaces)
+│   ├── 00_dataset_splitter.py       # Stratified 80/20 train/validation split engine
+│   │
+│   ├── 🧪 BASELINE PIPELINE (Unoptimized Stack)
+│   │   ├── baseline_model.py         # Standard 3-layer sequential CNN architecture
+│   │   ├── data_loader_baseline.py   # Raw data engine (No CLAHE, No Weighted Sampling)
+│   │   ├── training_engine_baseline.py # Baseline training loop logic
+│   │   ├── run_baseline_audit.py     # Execution script for baseline training
+│   │   └── baseline_final_audit.py   # Test suite generating baseline scorecard
+│   │
+│   └── 🚀 ADVANCED PIPELINE (Radiology-Optimized Stack)
+│       ├── model_builder.py          # EfficientNet-B0 with custom medical diagnostic head
+│       ├── data_loader.py            # Contrast Limited Adaptive Histogram Equalization (CLAHE) loader
+│       ├── training_engine.py        # Custom training loop with StepLR optimization decay
+│       ├── final_test_audit.py       # Comprehensive testing suite evaluating Recall and MCC
+│       ├── clinical_visual_check.py  # Validation loop for monitoring misclassifications
+│       └── grad_cam_visualizer.py    # Explainable AI (XAI) feature localization map
+│
+├── Visuals/               # Production-grade Graphics & Scorecards
+│   ├── baseline_learning_curves.png  # Training vs Validation curves for baseline
+│   ├── baseline_test_scorecard.png  # Performance confusion matrix for baseline
+│   ├── full_training_performance.png # Training vs Validation curves for Advanced model
+│   ├── final_test_scorecard.png     # Performance confusion matrix for Advanced model
+│   └── gradcam_clinical_analysis.png # Biological verification heatmaps
+│
+└── Report/                # Comprehensive Academic Documentation
+    └── Architectural_Evolution_Report.pdf # Final analysis paper
