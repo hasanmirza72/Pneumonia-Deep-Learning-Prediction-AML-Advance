@@ -12,7 +12,7 @@ An advanced deep learning framework comparing an unoptimized sequential CNN base
 **Researcher:** Mirza Muhammad Hasan Ali  
 **Academic Institution:** University of Bologna  
 **Course:** Applied Machine Learning (Advance)  
-**Instructors:** Prof. Daniele Bonacorsi & Dr. Luca Clissa  
+**Instructors:** Prof. Daniele Bonacorsi & Luca Clissa  
 
 ---
 
