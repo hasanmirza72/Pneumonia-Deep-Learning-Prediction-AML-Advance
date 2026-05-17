@@ -170,7 +170,7 @@ self.base_model.classifier = nn.Sequential(
 
 ```
 
-Optimization runs via the Adam algorithm ($\alpha = 10^{-4}$) backed by an adaptive plateau scheduler (`ReduceLROnPlateau`), which reduces the learning rate by $90\%$ if validation loss stagnates for more than three consecutive epochs.
+Optimization runs via the Adam algorithm ($\alpha = 10^{-4}$) backed by an adaptive plateau scheduler (`ReduceLROnPlateau`), which reduces the learning rate by $90%$ if validation loss stagnates for more than three consecutive epochs.
 
 ![Figure 3: Advanced Pipeline Optimization Convergence Trace](./Visuals/full_training_performance.png)
 > **Figure 3:** Training vs validation loss reduction and diagnostic accuracy curves for the advanced EfficientNet pipeline, demonstrating smooth convergence driven by adaptive learning rate scaling.
