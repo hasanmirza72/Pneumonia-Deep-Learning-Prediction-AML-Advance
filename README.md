@@ -105,7 +105,7 @@ Pneumonia-Deep-Learning-Prediction-AML-Advance/
 │   └── radiology_enhancement_comparison.png # Preprocessing pipeline layout illustrating raw radiography scans vs. CLAHE contrast filtering
 │
 └── Report/                 # Formal Scholarly Documentation
-    └── Architectural_Evolution_For_Pneumonia_Detection_Report.pdf # Comprehensive final research analysis paper
+│   └── Comparative_Analysis_of_Deep_Learning_Architectures_for_Pneumonia_Detection_in_Chest_X_Rays.pdf # Comprehensive final project report
 
 ```
 
