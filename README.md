@@ -97,9 +97,12 @@ Pneumonia-Deep-Learning-Prediction-AML-Advance/
 ├── Visuals/                # Production-Grade Performance Charts & Audit Graphics
 │   ├── baseline_learning_curves.png  # Loss reduction tracking and accuracy progression for the baseline
 │   ├── baseline_test_scorecard.png   # Unseen test matrix highlighting high false-negative rates
-│   ├── full_training_performance.jpg # Symmetrical training vs validation optimization curves
-│   ├── final_test_scorecard.png      # Champion performance analysis reporting a 99.0% sensitivity rate
-│   └── gradcam_clinical_analysis.jpg # Anatomical localization heatmaps confirming target parenchymal focus
+│   ├── clinical_diagnostic_gallery.png # General clinical audit grid charting random validation scans alongside confidence percentages
+│   ├── full_training_performance.png # Symmetrical training vs validation optimization curves
+│   ├── final_test_scorecard.png      # EfficientNet-B0 performance analysis reporting a 99.0% sensitivity rate
+│   └── gradcam_clinical_analysis.png # Anatomical localization heatmaps confirming target parenchymal focus
+│   ├── misclassification_report.png  # Targeted error analysis grid isolating edge-case false positives for active model debugging
+│   └── radiology_enhancement_comparison.png # Preprocessing pipeline layout illustrating raw radiography scans vs. CLAHE contrast filtering
 │
 └── Report/                 # Formal Scholarly Documentation
     └── Architectural_Evolution_For_Pneumonia_Detection_Report.pdf # Comprehensive final research analysis paper
