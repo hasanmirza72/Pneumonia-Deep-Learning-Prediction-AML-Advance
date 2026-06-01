@@ -51,8 +51,12 @@ git pull origin main
 
 To preserve a lightweight codebase repository structure, raw medical images are decoupled from core source control parameters:
 
-* **Primary Source:** Download the raw radiography dataset from the official [ChestXRay2017 (UCSD) Mendeley Repository](https://data.mendeley.com/datasets/rscbjbr9sj/2).
-* **Local Workspace Allocation:** Extract the target compressed archive and place the contents into a directory folder named `ChestXRay2017/` configured within your root repository pathing layout.
+* **Primary Source**
+
+Download the raw radiography dataset from the official [ChestXRay2017 (UCSD) Mendeley Repository](https://data.mendeley.com/datasets/rscbjbr9sj/2).
+* **Local Workspace Allocation**
+
+Extract the target compressed archive and place the contents into a directory folder named `ChestXRay2017/` configured within your root repository pathing layout.
 
 ---
 
@@ -108,9 +112,17 @@ Pneumonia-Deep-Learning-Prediction-AML-Advance/
 
 Automated pneumonia detection using Deep Learning architectures within clinical settings routinely suffers from three structural flaws:
 
-1. **Visual Signal Deficits:** Mild parenchymal infiltrates are frequently obscured by exposure variation across raw grayscale radiographs.
-2. **Dataset Asymmetry Skews:** Real-world epidemiological distributions present intense class asymmetries (e.g., the 1:3 ratio in this cohort), which skew standard optimization algorithms.
-3. **Deceptive Metric Risks:** Relying on simple accuracy allows networks to disguise a complete **Majority Class Collapse** under high overall percentage scores, creating severe safety failures by missing critical cases (False Negatives).
+1. **Visual Signal Deficits**
+
+Mild parenchymal infiltrates are frequently obscured by exposure variation across raw grayscale radiographs.
+
+2. **Dataset Asymmetry Skews** 
+
+Real-world epidemiological distributions present intense class asymmetries (e.g., the 1:3 ratio in this cohort), which skew standard optimization algorithms.
+
+3. **Deceptive Metric Risks** 
+
+Relying on simple accuracy allows networks to disguise a complete **Majority Class Collapse** under high overall percentage scores, creating severe safety failures by missing critical cases (False Negatives).
 
 This research framework establishes a safety-critical **Clinical Audit Framework**. By moving beyond simple accuracy, we evaluate deep models using the **Matthews Correlation Coefficient ($MCC$)** and **Specificity**. Transitioning from an unoptimized sequential baseline to a radiology-aware, fine-tuned EfficientNet-B0 pipeline successfully expanded Specificity from **32.9%** to **56.0%** and achieved an elite, safety-stable diagnostic sensitivity threshold of **99.0% Recall** on entirely unseen out-of-sample datasets.
 
@@ -118,9 +130,15 @@ This research framework establishes a safety-critical **Clinical Audit Framework
 
 ## 📂 4. Dataset Breakdown: ChestXRay2017 (UCSD)
 
-* **Target Source Cohort:** 5,856 pediatric digital chest radiographs.
-* **Categorical Architecture:** Binary Diagnostics (Normal vs. Pneumonia).
-* **Class Asymmetry Profiling:** The baseline dataset features a severe imbalance consisting of 1,341 normal scans versus 3,875 pneumonia-infected scans. Left unmitigated, this asymmetric data density forces conventional loss gradients to over-index on the positive class.
+* **Target Source Cohort**
+
+5,856 pediatric digital chest radiographs.
+* **Categorical Architecture**
+
+Binary Diagnostics (Normal vs. Pneumonia).
+* **Class Asymmetry Profiling**
+
+The baseline dataset features a severe imbalance consisting of 1,341 normal scans versus 3,875 pneumonia-infected scans. Left unmitigated, this asymmetric data density forces conventional loss gradients to over-index on the positive class.
 
 ---
 
@@ -139,7 +157,9 @@ To balance gradient adjustments during optimization passes without corrupting pi
 Bilinear or bicubic interpolation transformations act as spatial low-pass filters that inadvertently blur high-frequency edge vectors and fine tissue anomalies. We designed a custom `RadiologyCLAHE` engine that isolates the Luminance ($L$) channel within the LAB color space, executing contrast optimization within bounded $8 \times 8$ contextual grid matrices using a clip limit of $2.0$. This sharpens subtle lung texture variances while preventing noise over-amplification.
 
 ![Figure 1: Radiology CLAHE Contrast Processing](./Visuals/radiology_enhancement_comparison.png)
-> **Figure 1:** Visual processing check mapping a raw grayscale matrix against the localized tissue and structural boundary enhancement achieved through Radiology CLAHE processing.
+> **Figure 1**
+
+> Visual processing check mapping a raw grayscale matrix against the localized tissue and structural boundary enhancement achieved through Radiology CLAHE processing.
 
 ---
 
@@ -150,7 +170,9 @@ Bilinear or bicubic interpolation transformations act as spatial low-pass filter
 To define a clear performance floor, we built a standard 3-layer sequential CNN (`baseline_model.py`). This control network features sequential blocks of $3 \times 3$ convolutions paired with MaxPool2d layers, leading directly to a flattened dense classification block. Crucially, this pipeline is trained purely on unenhanced raw images without frequency sampling to expose how basic templates break when faced with class imbalances and raw clinical noise.
 
 ![Figure 2: Baseline Performance Optimization Curves](./Visuals/baseline_learning_curves.png)
-> **Figure 2:** Baseline tracking histories across 15 epochs. Intense validation loss fluctuations confirm optimization instability under unmitigated training conditions.
+> **Figure 2**
+
+> Baseline tracking histories across 15 epochs. Intense validation loss fluctuations confirm optimization instability under unmitigated training conditions.
 
 ### 📈 6.2 Advanced Production Pipeline: Fine-Tuned EfficientNet-B0
 
@@ -173,7 +195,9 @@ self.base_model.classifier = nn.Sequential(
 Optimization runs via the Adam algorithm ($\alpha = 10^{-4}$) backed by an adaptive plateau scheduler (`ReduceLROnPlateau`), which reduces the learning rate by 90% if validation loss stagnates for more than three consecutive epochs.
 
 ![Figure 3: Advanced Pipeline Optimization Convergence Trace](./Visuals/full_training_performance.png)
-> **Figure 3:** Training vs validation loss reduction and diagnostic accuracy curves for the advanced EfficientNet pipeline, demonstrating smooth convergence driven by adaptive learning rate scaling.
+> **Figure 3**
+
+> Training vs validation loss reduction and diagnostic accuracy curves for the advanced EfficientNet pipeline, demonstrating smooth convergence driven by adaptive learning rate scaling.
 
 ---
 
@@ -203,7 +227,9 @@ Crucially, this optimization was achieved while maintaining an excellent clinica
 
 ![Figure 4: Unoptimized Baseline Matrix Scorecard](./Visuals/baseline_test_scorecard.png)  
 ![Figure 5: Optimized Production Pipeline Matrix Scorecard](./Visuals/final_test_scorecard.png)
-> **Figures 4 & 5:** Sequential comparison of the unoptimized floor baseline control configuration (top) versus the radiology-optimized network (bottom) evaluated on identical test datasets.
+> **Figures 4 & 5**
+
+> Sequential comparison of the unoptimized floor baseline control configuration (top) versus the radiology-optimized network (bottom) evaluated on identical test datasets.
 
 ---
 
@@ -214,7 +240,9 @@ Crucially, this optimization was achieved while maintaining an excellent clinica
 To ensure the advanced architecture isolates relevant biological features rather than image shortcuts, we implemented a custom Grad-CAM interpretability engine. By computing spatial activation maps from the gradients of the final convolutional block of the EfficientNet backbone, the visualizer projects feature focus fields directly over the images.
 
 ![Figure 6: Explainable AI (XAI) Grad-CAM Visual Heatmaps](./Visuals/gradcam_clinical_analysis.png)
-> **Figure 6:** Grad-CAM Feature Localization Audit mapping activation markers for infected vs. healthy cohorts. For pneumonia cases (1 & 2), high-intensity focus correctly tracks internal consolidations. For clear cases (3 & 4), diagnostic lung fields remain completely clear (cool blue) while residual model attention shifts harmlessly to extra-pulmonary bounding layouts like the shoulders.
+> **Figure 6**
+
+> Grad-CAM Feature Localization Audit mapping activation markers for infected vs. healthy cohorts. For pneumonia cases (1 & 2), high-intensity focus correctly tracks internal consolidations. For clear cases (3 & 4), diagnostic lung fields remain completely clear (cool blue) while residual model attention shifts harmlessly to extra-pulmonary bounding layouts like the shoulders.
 
 The generated heatmaps confirm high clinical alignment. On true positive records, the highest activation weights localize directly over the lower pulmonary bounds, tracking focal parenchymal consolidations accurately. Healthy lung fields remain completely attenuated (cool blue), with residual attention shifting harmlessly to extra-pulmonary bounding structures like the shoulders, confirming the network successfully discriminates target parenchymal tissue.
 
@@ -223,16 +251,20 @@ The generated heatmaps confirm high clinical alignment. On true positive records
 To monitor model performance under normal testing conditions, a general validation gallery loop tracks true positive and true negative configurations.
 
 ![Figure 7: General Clinical Audit Gallery](./Visuals/clinical_diagnostic_gallery.png)
-> **Figure 7:** General validation gallery mapping model prediction confidence under typical conditions. The stack demonstrates highly stable, correct bounds across healthy cases, while capturing a single low-confidence False Positive failure point at the baseline border.
+> **Figure 7**
+
+> General validation gallery mapping model prediction confidence under typical conditions. The stack demonstrates highly stable, correct bounds across healthy cases, while capturing a single low-confidence False Positive failure point at the baseline border.
 
 ### 🚨 8.3 Grounded Error Analysis & Misclassification Audits
 
 Rather than treating the model as an opaque system, we isolated remaining errors using a custom misclassification logging engine (`clinical_visual_check.py`) to map its operational limits.
 
 ![Figure 8: High-Resolution Misclassification Report Matrix](./Visuals/misclassification_report.png)
-> **Figure 8:** Diagnostic Misclassification Report Matrix tracking remaining False Positive and False Negative system failure points.
+> **Figure 8**
 
-The audit shows that remaining errors primarily balance two distinct failure paths: prominent False Positives caused by the misinterpretation of extra-pulmonary boundaries and edge shadows as active infections under low-contrast conditions, alongside critical baseline False Negatives (Row 3, Columns 2–4) where highly diffuse, faint interstitial opacities failed to trigger the feature extractor threshold.
+> Diagnostic Misclassification Report Matrix tracking remaining False Positive and False Negative system failure points.
+
+The audit shows that remaining errors primarily balance two distinct failure paths that is prominent False Positives caused by the misinterpretation of extra-pulmonary boundaries and edge shadows as active infections under low-contrast conditions, alongside critical baseline False Negatives (Row 3, Columns 2–4) where highly diffuse, faint interstitial opacities failed to trigger the feature extractor threshold.
 
 ---
 
@@ -240,13 +272,22 @@ The audit shows that remaining errors primarily balance two distinct failure pat
 
 While the advanced pipeline successfully resolves majority class collapse, the error analysis outlines clear limitations that must be addressed before clinical deployment:
 
-* **Edge Artifact Sensitivity:** The network's tendency to mistake extra-pulmonary boundaries for active infections shows a vulnerability to patient positioning variances and scanning noise.
-* **Persistent Over-Diagnosis Tendencies:** Striving for a near-perfect sensitivity floor keeps Specificity constrained to $56.0\%$, showing a structural tendency to over-diagnose when faced with low-contrast, ambiguous scans.
+* **Edge Artifact Sensitivity**
+
+The network's tendency to mistake extra-pulmonary boundaries for active infections shows a vulnerability to patient positioning variances and scanning noise.
+* **Persistent Over-Diagnosis Tendencies**
+
+Striving for a near-perfect sensitivity floor keeps Specificity constrained to $56.0\%$, showing a structural tendency to over-diagnose when faced with low-contrast, ambiguous scans.
 
 To address these limits, future research iterations should integrate specialized image processing blocks:
 
-1. **Automated Lung Region Segmentation:** Integrating a pre-trained U-Net architecture to generate precise anatomical masks would allow the pipeline to crop out the rib cage and diaphragm shadows completely, forcing the feature extractor to focus exclusively on internal parenchymal tissue layers.
-2. **Multi-Task Optimization Loss Functions:** Replacing standard cross-entropy loss with a joint optimization objective that minimizes both binary cross-entropy and soft-dice structural overlap constraints would help refine the model's decision boundaries, reducing false positives in borderline cases.
+1. **Automated Lung Region Segmentation**
+
+Integrating a pre-trained U-Net architecture to generate precise anatomical masks would allow the pipeline to crop out the rib cage and diaphragm shadows completely, forcing the feature extractor to focus exclusively on internal parenchymal tissue layers.
+
+2. **Multi-Task Optimization Loss Functions** 
+
+Replacing standard cross-entropy loss with a joint optimization objective that minimizes both binary cross-entropy and soft-dice structural overlap constraints would help refine the model's decision boundaries, reducing false positives in borderline cases.
 
 ---
 
